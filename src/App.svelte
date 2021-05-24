@@ -1,5 +1,9 @@
 <script>
+  import { onMount } from "svelte";
   let orm = 100;
+
+  let input = null;
+
   $: max = orm * 0.9;
   $: p65 = max * 0.65;
   $: p70 = max * 0.7;
@@ -14,28 +18,68 @@
     [p70, p80, p90],
     [p75, p85, p95],
   ];
+
+  const headings = ["Week", "Set 1", "Set 2", "Set 3"];
+
+  onMount(() => {
+    input.focus();
+  });
+
+  function maybeShowRounded(set) {
+    if (parseInt(set) % 5 == 0) return "";
+    return "(hi)";
+  }
 </script>
 
 <main>
-  <input type="number" bind:value={orm} />
+  <h1>5/3/1 Calculator</h1>
 
-  <table>
-    <tr>
-      <th>Week</th>
-      <th>Set 1</th>
-      <th>Set 2</th>
-      <th>Set 3</th>
-    </tr>
-    {#each data as week, i}
-      <tr>
-        <td>{i + 1}</td>
-        {#each week as set}
-          <td>{set.toFixed(2)}</td>
+  <div class="flex flex-col border rounded-lg items-center p-8">
+    <div class="mb-4">
+      <label for="orm">One-Rep Max</label>
+      <input
+        id="orm"
+        class="px-3 py-2 ml-2 mb-4 border dark:bg-gray-700"
+        type="number"
+        bind:value={orm}
+        bind:this={input}
+      />
+    </div>
+
+    <table>
+      <tr class="border">
+        {#each headings as heading}
+          <th>{heading}</th>
         {/each}
       </tr>
-    {/each}
-  </table>
+      {#each data as week, i}
+        <tr class="border mt-2">
+          <td>{i + 1}</td>
+          {#each week as set}
+            <td>{parseInt(set)}{maybeShowRounded(set)}</td>
+          {/each}
+        </tr>
+      {/each}
+    </table>
+  </div>
 </main>
 
 <style>
+  td,
+  th {
+    @apply border p-4;
+  }
+
+  main {
+    @apply text-2xl max-w-lg m-auto items-center p-8 text-center;
+  }
+
+  h1 {
+    @apply text-4xl mb-6 font-semibold;
+  }
+
+  input[type="number"] {
+    width: 3em;
+    box-sizing: content-box;
+  }
 </style>
