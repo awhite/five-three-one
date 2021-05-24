@@ -24,11 +24,6 @@
   onMount(() => {
     input.focus();
   });
-
-  function maybeShowRounded(set) {
-    if (parseInt(set) % 5 == 0) return "";
-    return "(hi)";
-  }
 </script>
 
 <main>
@@ -56,7 +51,7 @@
         <tr class="border mt-2">
           <td>{i + 1}</td>
           {#each week as set}
-            <td>{parseInt(set)}{maybeShowRounded(set)}</td>
+            <td>{parseInt(set)}</td>
           {/each}
         </tr>
       {/each}
