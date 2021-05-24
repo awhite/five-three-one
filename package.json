@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/five-three-one/",
+    "build": "vite build --base=/5-3-1/",
     "serve": "vite preview"
   },
   "devDependencies": {
