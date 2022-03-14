@@ -5,6 +5,9 @@
   let input = null;
 
   $: max = orm * 0.9;
+  $: p40 = max * 0.4;
+  $: p50 = max * 0.5;
+  $: p60 = max * 0.6;
   $: p65 = max * 0.65;
   $: p70 = max * 0.7;
   $: p75 = max * 0.75;
@@ -17,6 +20,7 @@
     [p65, p75, p85],
     [p70, p80, p90],
     [p75, p85, p95],
+    [p40, p50, p60],
   ];
 
   const headings = ["Week", "Set 1", "Set 2", "Set 3"];
