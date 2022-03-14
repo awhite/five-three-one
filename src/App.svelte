@@ -1,33 +1,33 @@
 <script>
-  import { onMount } from "svelte";
-  let orm = 100;
+  import { onMount } from 'svelte'
+  let orm = 100
 
-  let input = null;
+  let input = null
 
-  $: max = orm * 0.9;
-  $: p40 = max * 0.4;
-  $: p50 = max * 0.5;
-  $: p60 = max * 0.6;
-  $: p65 = max * 0.65;
-  $: p70 = max * 0.7;
-  $: p75 = max * 0.75;
-  $: p80 = max * 0.8;
-  $: p85 = max * 0.85;
-  $: p90 = max * 0.9;
-  $: p95 = max * 0.95;
+  $: max = orm * 0.9
+  $: p40 = max * 0.4
+  $: p50 = max * 0.5
+  $: p60 = max * 0.6
+  $: p65 = max * 0.65
+  $: p70 = max * 0.7
+  $: p75 = max * 0.75
+  $: p80 = max * 0.8
+  $: p85 = max * 0.85
+  $: p90 = max * 0.9
+  $: p95 = max * 0.95
 
   $: data = [
     [p65, p75, p85],
     [p70, p80, p90],
     [p75, p85, p95],
     [p40, p50, p60],
-  ];
+  ]
 
-  const headings = ["Week", "Set 1", "Set 2", "Set 3"];
+  const headings = ['Week', 'Set 1', 'Set 2', 'Set 3']
 
   onMount(() => {
-    input.focus();
-  });
+    input.focus()
+  })
 </script>
 
 <main>
@@ -55,7 +55,7 @@
         <tr class="border mt-2">
           <td>{i + 1}</td>
           {#each week as set}
-            <td>{parseInt(set)}</td>
+            <td>{Math.round(set)}</td>
           {/each}
         </tr>
       {/each}
@@ -70,14 +70,14 @@
   }
 
   main {
-    @apply text-2xl max-w-lg m-auto items-center p-8 text-center;
+    @apply text-2xl max-w-lg m-auto items-center px-4 pt-8 text-center;
   }
 
   h1 {
     @apply text-4xl mb-6 font-semibold;
   }
 
-  input[type="number"] {
+  input[type='number'] {
     width: 3em;
     box-sizing: content-box;
   }

@@ -14,9 +14,11 @@ module.exports = {
       keyframes: true,
     },
   },
+  theme: {},
   variants: {
     extend: {},
   },
   plugins: [],
   darkMode: 'media',
+  mode: "jit",
 };
